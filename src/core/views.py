@@ -1,11 +1,25 @@
 from django.http import JsonResponse
 from django.shortcuts import render
 
-# Create your views here.
-def test_view(request):
-    data = {
-        "country": "Venezuela",
-        "message": "Donald Trump has President Maduro kidnapped!"
-    }
+# third-party imports
+from rest_framework.response import Response
+from rest_framework.views import APIView
 
-    return JsonResponse(data)
+# Create your views here.
+
+class TestView(APIView):
+    def get(self, request, *args, **kwargs):
+        data = {
+            "country": "Venezuela",
+            "message": "Donald Trump has President Maduro kidnapped!"
+        }
+        
+        return Response(data)
+
+# def test_view(request):
+#     data = {
+#         "country": "Venezuela",
+#         "message": "Donald Trump has President Maduro kidnapped!"
+#     }
+
+#     return JsonResponse(data)
