@@ -31,6 +31,10 @@ class PostCreateView(
     def get(self, request, *args, **kwargs):
         return self.list(self, request, *args, **kwargs)
 
+class PostListCreateView(generics.ListCreateAPIView):
+    serializer_class = PostSerializer
+    queryset = Post.objects.all()
+
 # class TestView(APIView):
 #     permission_classes = (IsAuthenticated, )
 #     def get(self, request, *args, **kwargs):
