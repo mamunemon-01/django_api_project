@@ -22,9 +22,14 @@ class PostView(
     def post(self, request, *args, **kwargs):
         return self.create(request, *args, **kwargs)
 
-class PostCreateView(generics.CreateAPIView):
+class PostCreateView(
+    mixins.ListModelMixin,
+    generics.CreateAPIView):
     serializer_class = PostSerializer
     queryset = Post.objects.all()
+
+    def get(self, request, *args, **kwargs):
+        return self.list(self, request, *args, **kwargs)
 
 # class TestView(APIView):
 #     permission_classes = (IsAuthenticated, )
