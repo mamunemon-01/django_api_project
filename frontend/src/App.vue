@@ -1,17 +1,26 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <!-- <img alt="Vue logo" src="./assets/logo.png"> -->
+    <h1>HeadBook</h1>
+    <NewsFeed v-if="isLoggedIn" msg="What's on your head?"/>
+    <LogIn v-else @login-success="isLoggedIn = true"/>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import NewsFeed from './components/NewsFeed.vue'
+import LogIn from './components/LogIn.vue'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    NewsFeed,
+    LogIn
+  },
+  data() {
+    return {
+      isLoggedIn: false
+    }
   }
 }
 </script>

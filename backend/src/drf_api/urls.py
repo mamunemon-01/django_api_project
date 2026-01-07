@@ -26,5 +26,6 @@ urlpatterns = [
     path('', PostView.as_view()),
     path('api/token/', obtain_auth_token, name='obtain-token'),
     path('create/', PostCreateView.as_view()),
-    path('list-create/', PostListCreateView.as_view())
+    path('list-create/', PostListCreateView.as_view()),
+    path('api/', include('core.urls')),
 ]
