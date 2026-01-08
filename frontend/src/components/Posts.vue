@@ -4,7 +4,7 @@
     <div class="PostsContainer">
       <div v-for="post in posts" :key="post.id" class="card mb-3">
         <div class="card-body d-flex justify-content-start flex-column">
-          <h5 class="card-title text-start p-2">{{ post.title }}</h5>
+          <h5 class="card-title text-start text-primary p-2">{{ post.title }}</h5>
           <p class="card-text text-start p-3">{{ post.description }}</p>
         </div>
       </div>
@@ -43,9 +43,9 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-  .card-title {
+  /* .card-title {
     background-color: #d0d0d0;
     /* color: ; */
-    border-radius: 4px;
-  }
+    /* border-radius: 4px;
+  } */
 </style>
