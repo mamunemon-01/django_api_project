@@ -1,9 +1,11 @@
 <template>
   <div id="app">
     <!-- <img alt="Vue logo" src="./assets/logo.png"> -->
-    <h1 id="app-title">HeadBook</h1>
-    <NewsFeed v-if="isLoggedIn" msg="What's on your head?"/>
-    <LogIn v-else @login-success="isLoggedIn = true"/>
+    <h1 id="app-title" class="py-2 bg-primary text-light">HeadBook</h1>
+    <div id="app-content">
+      <NewsFeed v-if="isLoggedIn" msg="What's on your head?"/>
+      <LogIn v-else @login-success="isLoggedIn = true"/>
+    </div>
   </div>
 </template>
 
@@ -35,9 +37,12 @@ export default {
   margin-top: 60px;
   /* Light background for the entire app */
   background-color: #f5f7fa;
+  margin-top: 0px;
 }
 #app-title {
   font-weight: bold;
-  margin-bottom: 60px;
+}
+#app-content {
+  margin-top: 60px;
 }
 </style>
