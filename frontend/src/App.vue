@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <!-- <img alt="Vue logo" src="./assets/logo.png"> -->
-    <h1>HeadBook</h1>
+    <h1 id="app-title">HeadBook</h1>
     <NewsFeed v-if="isLoggedIn" msg="What's on your head?"/>
     <LogIn v-else @login-success="isLoggedIn = true"/>
   </div>
@@ -35,5 +35,9 @@ export default {
   margin-top: 60px;
   /* Light background for the entire app */
   background-color: #f5f7fa;
+}
+#app-title {
+  font-weight: bold;
+  margin-bottom: 60px;
 }
 </style>

@@ -3,13 +3,17 @@
     <div class="CreateForm">
       <h3 class="mb-3">Create a Post</h3>
       <div class="card form-group d-flex flex-column mb-4">
-        <div class="form-field mb-2 d-flex align-items-center m-2">
-          <label for="postTitle" class="me-1">Title:</label>
-          <input id="postTitle" class="w-100 ms-auto" v-model="title"/>
+        <div class="form-field ms-2">
+          <label for="postTitle" class="d-flex text-start">Title:</label>
         </div>
-        <div class="form-field d-flex align-items-center m-2">
-          <label for="postContent" class="me-1">Content:</label>
-          <textarea id="postContent" class="w-100 ms-auto" :placeholder="msg" v-model="description"></textarea>
+        <div class="form-field mx-2 mb-2">
+          <input id="postTitle" class="w-100 ms-auto border-1 rounded-1" v-model="title"/>
+        </div>
+        <div class="form-field ms-2">
+          <label for="postContent" class="d-flex text-start">Content:</label>
+        </div>
+        <div class="form-field mx-2 mb-2">
+          <textarea id="postContent" class="w-100 ms-auto rounded-1" :placeholder="msg" v-model="description"></textarea>
         </div>
         <div class="form-field d-flex justify-content-end mb-2 me-2">
           <button class="btn btn-primary" @click="createPost">Post</button>
