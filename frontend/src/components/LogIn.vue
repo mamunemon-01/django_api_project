@@ -1,8 +1,8 @@
 <template>
   <div class="container">
     <div class="LoginForm">
-      <h3 class="mb-3">Sign In</h3>
       <div class="card form-group d-flex flex-column mb-4">
+        <h3 class="my-3">Sign In</h3>
         <div class="form-field mb-2 d-flex align-items-center m-2">
           <label for="userName" class="me-1">Username:</label>
           <input id="userName" class="w-100 ms-auto" v-model="username"/>
@@ -64,4 +64,8 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+  .container {
+    max-width: 420px;
+    margin-top: 60px;
+  }
 </style>

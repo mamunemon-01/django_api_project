@@ -33,5 +33,7 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+  /* Light background for the entire app */
+  background-color: #f5f7fa;
 }
 </style>
