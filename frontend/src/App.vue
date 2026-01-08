@@ -3,7 +3,7 @@
     <!-- <img alt="Vue logo" src="./assets/logo.png"> -->
     <h1 id="app-title" class="py-2 bg-primary text-light">HeadBook</h1>
     <div id="app-content">
-      <NewsFeed v-if="isLoggedIn" msg="What's on your head?"/>
+      <NewsFeed v-if="isLoggedIn" titlePlaceholder="What's on your head?" descriptionPlaceholder="Share your thoughts..."/>
       <LogIn v-else @login-success="isLoggedIn = true"/>
     </div>
   </div>

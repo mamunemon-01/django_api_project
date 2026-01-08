@@ -7,13 +7,13 @@
           <label for="postTitle" class="d-flex text-start">Title:</label>
         </div>
         <div class="form-field mx-2 mb-2">
-          <input id="postTitle" class="w-100 ms-auto border-1 rounded-1" v-model="title"/>
+          <input id="postTitle" class="w-100 ms-auto border-1 rounded-1" :placeholder="titlePlaceholder" v-model="title"/>
         </div>
         <div class="form-field ms-2">
           <label for="postContent" class="d-flex text-start">Content:</label>
         </div>
         <div class="form-field mx-2 mb-2">
-          <textarea id="postContent" class="w-100 ms-auto rounded-1" :placeholder="msg" v-model="description"></textarea>
+          <textarea id="postContent" class="w-100 ms-auto rounded-1" :placeholder="descriptionPlaceholder" v-model="description"></textarea>
         </div>
         <div class="form-field d-flex justify-content-end mb-2 me-2">
           <button class="btn btn-primary" @click="createPost">Post</button>
@@ -31,7 +31,8 @@ import Posts from './Posts.vue'
 export default {
   name: 'NewsFeed',
   props: {
-    msg: String
+    titlePlaceholder: String,
+    descriptionPlaceholder: String
   },
   components: {
     Posts
