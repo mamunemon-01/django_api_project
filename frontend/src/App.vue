@@ -12,6 +12,7 @@
 <script>
 import NewsFeed from './components/NewsFeed.vue'
 import LogIn from './components/LogIn.vue'
+import axios from 'axios';
 
 export default {
   name: 'App',
@@ -22,6 +23,16 @@ export default {
   data() {
     return {
       isLoggedIn: false
+    }
+  },
+  mounted() {
+    // Check if the user is already logged in (e.g., by checking a token in localStorage)
+    // For simplicity, we'll assume the user is not logged in initially
+    this.isLoggedIn = false;
+    const token = localStorage.getItem('authToken');
+    if (token) {
+      this.isLoggedIn = true;
+      axios.defaults.headers.common['Authorization'] = `Token ${token}`;
     }
   }
 }

@@ -45,6 +45,9 @@ export default {
         });
         console.log("Login response: ",response);
         if(response.status === 200){
+          const token = response.data.key;
+          localStorage.setItem('authToken', token);
+          axios.defaults.headers.common['Authorization'] = `Token ${token}`
           this.$emit("login-success");
         }
         // window.location.reload();
