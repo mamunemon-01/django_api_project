@@ -3,6 +3,7 @@
     <!-- <img alt="Vue logo" src="./assets/logo.png"> -->
     <div class="d-flex bg-primary justify-content-center align-items-center">
       <h1 id="app-title" class="ps-2 py-1 text-light">HeadBook</h1>
+      <h3 id="user-name" class="ms-4 text-light fw-bold">@{{ username }}</h3>
       <div v-if="isLoggedIn" class="ms-auto pe-2 py-1">
         <button class="btn btn-light fw-bold" @click="handleLogout">Log Out</button>
       </div>
@@ -27,7 +28,8 @@ export default {
   },
   data() {
     return {
-      isLoggedIn: false
+      isLoggedIn: false,
+      username: null
     }
   },
   mounted() {
@@ -47,6 +49,7 @@ export default {
           console.log('Retrieved user through token from localStorage:', response);
           if (response.status === 200) {
             this.isLoggedIn = true;
+            this.username = response.data.username;
           }
         } catch (error) {
           if (error.status === 401) {
