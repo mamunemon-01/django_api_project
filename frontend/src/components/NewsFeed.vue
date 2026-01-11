@@ -1,7 +1,7 @@
 <template>
-  <div class="container">
+  <div class="container mb-4">
     <div class="CreateForm">
-      <h3 class="mb-3">Create a Post</h3>
+      <h3 class="mb-3 fw-bold">Create a Post</h3>
       <div class="card form-group d-flex flex-column mb-4">
         <div class="form-field ms-2">
           <label for="postTitle" class="d-flex text-start">Title:</label>
@@ -16,7 +16,7 @@
           <textarea id="postContent" class="w-100 ms-auto rounded-1" :placeholder="descriptionPlaceholder" v-model="description"></textarea>
         </div>
         <div class="form-field d-flex justify-content-end mb-2 me-2">
-          <button class="btn btn-primary" @click="createPost">Post</button>
+          <button class="btn btn-primary fw-bold" @click="createPost">Post</button>
         </div>
       </div>
     </div>
