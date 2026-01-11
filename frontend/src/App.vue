@@ -3,7 +3,7 @@
     <!-- <img alt="Vue logo" src="./assets/logo.png"> -->
     <div class="d-flex bg-primary justify-content-center align-items-center">
       <h1 id="app-title" class="ps-2 py-1 text-light">HeadBook</h1>
-      <h3 id="user-name" class="ms-4 text-light fw-bold">@{{ username }}</h3>
+      <h3 v-if="isLoggedIn" id="user-name" class="ms-4 text-light fw-bold border rounded-5 p-1">@{{ username }}</h3>
       <div v-if="isLoggedIn" class="ms-auto pe-2 py-1">
         <button class="btn btn-light fw-bold" @click="handleLogout">Log Out</button>
       </div>
@@ -36,10 +36,10 @@ export default {
     // Check if the user is already logged in (e.g., by checking a token in localStorage)
     // For simplicity, we'll assume the user is not logged in initially
     this.isLoggedIn = false;
-    this.handleLogin();
+    this.handlePreviousLogin();
   },
   methods: {
-    async handleLogin() {
+    async handlePreviousLogin() {
       const token = localStorage.getItem('authToken');
       if (token) {
         // Check if token exists and set isLoggedIn accordingly
@@ -57,6 +57,8 @@ export default {
             delete axios.defaults.headers.common['Authorization'];
           }
           console.error("Failed to retrieve user:", error);
+          this.username = null;
+          this.isLoggedIn = false;
         }
       }
     },
