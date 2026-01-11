@@ -57,13 +57,21 @@ export default {
         }
       }
     },
-    handleLogout() {
-      // Clear the authentication token from localStorage
-      localStorage.removeItem('authToken');
-      // Remove the Authorization header from axios
-      delete axios.defaults.headers.common['Authorization'];
-      // Update the isLoggedIn state
-      this.isLoggedIn = false;
+    async handleLogout() {
+      try {
+        const response = await axios.post('http://localhost:8000/dj-rest-auth/logout/');
+        console.log("Logout response: ", response);
+        if(response.status === 200){
+          // Clear the authentication token from localStorage
+          localStorage.removeItem('authToken');
+          // Remove the Authorization header from axios
+          delete axios.defaults.headers.common['Authorization'];
+          // Update the isLoggedIn state
+          this.isLoggedIn = false;
+        }
+      } catch(error) {
+        console.error("Error logging out: ", error);
+      }
     }
   }
 }
