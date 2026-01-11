@@ -34,6 +34,9 @@ class PostCreateView(
 class PostListCreateView(generics.ListCreateAPIView):
     serializer_class = PostSerializer
     queryset = Post.objects.all()
+    
+    def perform_create(self, serializer):
+        serializer.save(owner=self.request.user)
 
 # class TestView(APIView):
 #     permission_classes = (IsAuthenticated, )

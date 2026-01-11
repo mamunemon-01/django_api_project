@@ -41,7 +41,9 @@ export default {
     return {
       title: null,
       description: null,
-      owner: 1
+      owner: {
+        id: 2
+      }
     }
   },
   methods: {
@@ -49,8 +51,7 @@ export default {
       try {
         const response = await axios.post('http://localhost:8000/api/posts/', {
           title: this.title,
-          description: this.description,
-          owner: this.owner
+          description: this.description
         });
         console.log(response);
         // Reload if response is successful
