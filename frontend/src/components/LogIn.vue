@@ -2,7 +2,7 @@
   <div class="container">
     <div class="LoginForm">
       <div class="card form-group d-flex flex-column mb-4">
-        <h3 class="my-3">Sign In</h3>
+        <h3 class="my-3 fw-bold">Sign In</h3>
         <div class="form-field mb-2 d-flex align-items-center m-2">
           <label for="userName" class="me-1">Username:</label>
           <input id="userName" class="w-100 ms-auto" v-model="username"/>
@@ -13,7 +13,7 @@
         </div>
         <div v-if="errorLoggingIn" class="LoginAlertContainer text-danger">{{ logInErrorMessage }}</div>
         <div class="form-field d-flex justify-content-end mb-2 me-2">
-          <button class="btn btn-primary" @click="logIn">Log In</button>
+          <button class="btn btn-primary fw-bold" @click="logIn">Log In</button>
         </div>
       </div>
     </div>
