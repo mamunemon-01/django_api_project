@@ -4,7 +4,10 @@
     <div class="PostsContainer">
       <div v-for="post in posts" :key="post.id" class="card mb-3">
         <div class="card-body d-flex justify-content-start flex-column">
-          <h5 class="card-title text-start text-primary p-2">{{ post.title }}</h5>
+          <div class="card-header d-flex justify-content-between align-items-center">
+            <h5 class="card-title text-start text-primary p-2">{{ post.title }}</h5>
+            <small class="text-muted">@{{ post.owner.username }}</small>
+          </div>
           <p class="card-text text-start p-3">{{ post.description }}</p>
         </div>
       </div>
@@ -33,6 +36,7 @@ export default {
       try {
         const response = await axios.get('http://localhost:8000/api/posts/');
         this.posts = response.data;
+        // console.log('Fetched posts:', this.posts);
       } catch (error) {
         console.error('Error fetching posts:', error);  
       }
