@@ -34,14 +34,29 @@ export default {
     // Check if the user is already logged in (e.g., by checking a token in localStorage)
     // For simplicity, we'll assume the user is not logged in initially
     this.isLoggedIn = false;
-    const token = localStorage.getItem('authToken');
-    console.log('Retrieved token from localStorage:', token);
-    if (token) {
-      this.isLoggedIn = true;
-      axios.defaults.headers.common['Authorization'] = `Token ${token}`;
-    }
+    this.handleLogin();
   },
   methods: {
+    async handleLogin() {
+      const token = localStorage.getItem('authToken');
+      if (token) {
+        // Check if token exists and set isLoggedIn accordingly
+        axios.defaults.headers.common['Authorization'] = `Token ${token}`;
+        try {
+          const response = await axios.get('http://127.0.0.1:8000/dj-rest-auth/user/');
+          console.log('Retrieved user through token from localStorage:', response);
+          if (response.status === 200) {
+            this.isLoggedIn = true;
+          }
+        } catch (error) {
+          if (error.status === 401) {
+            localStorage.removeItem('authToken');
+            delete axios.defaults.headers.common['Authorization'];
+          }
+          console.error("Failed to retrieve user:", error);
+        }
+      }
+    },
     handleLogout() {
       // Clear the authentication token from localStorage
       localStorage.removeItem('authToken');
