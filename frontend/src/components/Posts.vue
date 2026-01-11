@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <h3 class="mb-3">News Feed</h3>
+    <h3 class="mb-3 fw-bold">News Feed</h3>
     <div class="PostsContainer">
       <div v-for="post in posts" :key="post.id" class="card mb-3">
         <div class="card-body d-flex justify-content-start flex-column">
