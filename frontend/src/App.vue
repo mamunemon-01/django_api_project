@@ -1,7 +1,12 @@
 <template>
   <div id="app">
     <!-- <img alt="Vue logo" src="./assets/logo.png"> -->
-    <h1 id="app-title" class="py-2 bg-primary text-light">HeadBook</h1>
+    <div class="d-flex bg-primary justify-content-center align-items-center">
+      <h1 id="app-title" class="ps-2 py-1 text-light">HeadBook</h1>
+      <div v-if="isLoggedIn" class="ms-auto pe-2 py-1">
+        <button class="btn btn-light fw-bold" @click="handleLogout">Log Out</button>
+      </div>
+    </div>
     <div id="app-content">
       <NewsFeed v-if="isLoggedIn" titlePlaceholder="What's on your head?" descriptionPlaceholder="Share your thoughts..."/>
       <LogIn v-else @login-success="isLoggedIn = true"/>
@@ -30,9 +35,20 @@ export default {
     // For simplicity, we'll assume the user is not logged in initially
     this.isLoggedIn = false;
     const token = localStorage.getItem('authToken');
+    console.log('Retrieved token from localStorage:', token);
     if (token) {
       this.isLoggedIn = true;
       axios.defaults.headers.common['Authorization'] = `Token ${token}`;
+    }
+  },
+  methods: {
+    handleLogout() {
+      // Clear the authentication token from localStorage
+      localStorage.removeItem('authToken');
+      // Remove the Authorization header from axios
+      delete axios.defaults.headers.common['Authorization'];
+      // Update the isLoggedIn state
+      this.isLoggedIn = false;
     }
   }
 }
