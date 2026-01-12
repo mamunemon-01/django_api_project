@@ -33,10 +33,8 @@ from .models import Post
 #     def get(self, request, *args, **kwargs):
 #         return self.list(self, request, *args, **kwargs)
 
-class PostListCreateRetrieveUpdateDestroyView(
-    generics.ListCreateAPIView,
-    generics.RetrieveUpdateDestroyAPIView):
-    # lookup_field = 'title' # to use title instead of id for lookup with parameter
+class PostListCreateView(generics.ListCreateAPIView):
+    # lookup_field = 'pk' # to use primary key instead of id for lookup with parameter
     # pagination_class = LimitOffsetPagination # to enable pagination
     serializer_class = PostSerializer # to specify serializer
     # def get_serializer_class(self):# to dynamically set serializer class
@@ -53,6 +51,14 @@ class PostListCreateRetrieveUpdateDestroyView(
     #         querset = Post.objects.none()
 
     #     return querset
+    def perform_create(self, serializer):
+        serializer.save(owner=self.request.user)
+
+class PostRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
+    # lookup_field = 'pk' # to use primary key instead of id for lookup with parameter
+    serializer_class = PostSerializer # to specify serializer
+    queryset = Post.objects.all() # to specify queryset for all posts
+
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
 
