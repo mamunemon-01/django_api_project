@@ -10,7 +10,7 @@
     </div>
     <div id="app-content">
       <NewsFeed v-if="isLoggedIn" titlePlaceholder="What's on your head?" descriptionPlaceholder="Share your thoughts..."/>
-      <LogIn v-else @login-success="isLoggedIn = true"/>
+      <LogIn v-else @login-success="handleLoginSuccess"/>
     </div>
   </div>
 </template>
@@ -54,6 +54,7 @@ export default {
         } catch (error) {
           if (error.status === 401) {
             localStorage.removeItem('authToken');
+            localStorage.removeItem('username');
             delete axios.defaults.headers.common['Authorization'];
           }
           console.error("Failed to retrieve user:", error);
@@ -62,6 +63,10 @@ export default {
         }
       }
     },
+    handleLoginSuccess(){
+      this.isLoggedIn = true;
+      this.username = localStorage.getItem('username');
+    },
     async handleLogout() {
       try {
         const response = await axios.post('http://localhost:8000/dj-rest-auth/logout/');
@@ -69,6 +74,8 @@ export default {
         if(response.status === 200){
           // Clear the authentication token from localStorage
           localStorage.removeItem('authToken');
+          localStorage.removeItem('username');
+          this.username = null;
           // Remove the Authorization header from axios
           delete axios.defaults.headers.common['Authorization'];
           // Update the isLoggedIn state

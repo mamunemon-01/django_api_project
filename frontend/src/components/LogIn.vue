@@ -46,6 +46,8 @@ export default {
         console.log("Login response: ",response);
         if(response.status === 200){
           const token = response.data.key;
+          // Save the username and the token in localStorage
+          localStorage.setItem('username', this.username);
           localStorage.setItem('authToken', token);
           axios.defaults.headers.common['Authorization'] = `Token ${token}`
           this.$emit("login-success");
