@@ -7,8 +7,8 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework import generics, mixins
-from .serializers import PostSerializer
-from .models import Post
+from .serializers import PostSerializer, ProductSerializer
+from .models import Post, Product
 
 # Create your views here.
 # class PostView(
@@ -89,3 +89,11 @@ class PostRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
 #     }
 
 #     return JsonResponse(data)
+
+class ProductListCreateView(generics.ListCreateAPIView):
+    serializer_class = ProductSerializer
+    queryset = Product.objects.all()
+
+class ProductRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
+    serializer_class = ProductSerializer
+    queryset = Product.objects.all()
