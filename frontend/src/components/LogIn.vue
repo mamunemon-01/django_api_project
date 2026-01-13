@@ -24,7 +24,7 @@
 import axios from 'axios'
 
 export default {
-  name: 'NewsFeed',
+  name: 'LogIn',
   props: {
     msg: String
   },

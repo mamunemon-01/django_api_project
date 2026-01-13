@@ -1,30 +1,34 @@
 <template>
   <div id="app">
     <!-- <img alt="Vue logo" src="./assets/logo.png"> -->
-    <div class="d-flex bg-primary justify-content-center align-items-center">
+    <!-- <div class="d-flex bg-primary justify-content-center align-items-center">
       <h1 id="app-title" class="ps-2 py-1 text-light">HeadBook</h1>
       <h3 v-if="isLoggedIn" id="user-name" class="ms-4 text-light fw-bold border rounded-5 p-1">@{{ username }}</h3>
       <div v-if="isLoggedIn" class="ms-auto pe-2 py-1">
         <button class="btn btn-light fw-bold" @click="handleLogout">Log Out</button>
       </div>
-    </div>
+    </div> -->
+    <NavBar v-if="isLoggedIn" :username="username" @logout="handleLogout"/>
     <div id="app-content">
-      <NewsFeed v-if="isLoggedIn" titlePlaceholder="What's on your head?" descriptionPlaceholder="Share your thoughts..."/>
+      <!-- <NewsFeed v-if="isLoggedIn" titlePlaceholder="What's on your head?" descriptionPlaceholder="Share your thoughts..."/> -->
+      <router-view v-if="isLoggedIn" />
       <LogIn v-else @login-success="handleLoginSuccess"/>
     </div>
   </div>
 </template>
 
 <script>
-import NewsFeed from './components/NewsFeed.vue'
+// import NewsFeed from './components/NewsFeed.vue'
 import LogIn from './components/LogIn.vue'
 import axios from 'axios';
+import NavBar from './components/NavBar.vue';
 
 export default {
   name: 'App',
   components: {
-    NewsFeed,
-    LogIn
+    // NewsFeed,
+    LogIn,
+    NavBar
   },
   data() {
     return {
@@ -69,9 +73,9 @@ export default {
     },
     async handleLogout() {
       try {
-        const response = await axios.post('http://localhost:8000/dj-rest-auth/logout/');
-        console.log("Logout response: ", response);
-        if(response.status === 200){
+          const response = await axios.post('http://localhost:8000/dj-rest-auth/logout/');
+          console.log("Logout response: ", response);
+          if(response.status === 200){
           // Clear the authentication token from localStorage
           localStorage.removeItem('authToken');
           localStorage.removeItem('username');
@@ -80,9 +84,9 @@ export default {
           delete axios.defaults.headers.common['Authorization'];
           // Update the isLoggedIn state
           this.isLoggedIn = false;
-        }
+          }
       } catch(error) {
-        console.error("Error logging out: ", error);
+          console.error("Error logging out: ", error);
       }
     }
   }
