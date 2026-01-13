@@ -13,7 +13,7 @@ export default new Router({
         { path: '/login', name: 'LogIn', component: LogIn },
         { path: '/posts', name: 'Posts', component: NewsFeed },
         { path: '/products', name: 'Products',component: Products },
-        { path: '/products/:id', name: 'ProductDetails', component: ProductDetails },
+        { path: '/products/:id', name: 'ProductDetails', component: ProductDetails, props: true},
         { path: '/', redirect: '/posts' }
     ]
 })

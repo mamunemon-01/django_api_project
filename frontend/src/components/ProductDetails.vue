@@ -34,6 +34,7 @@ export default {
     }
   },
   mounted() {
+    console.log("Product ID: ", this.id);
     if(this.id){
       this.fetchProductDetails(this.id);
     }
@@ -60,6 +61,7 @@ export default {
       try {
         const response = await axios.get(`http://localhost:8000/api/products/${productId}/`);
         const product = response.data;
+        console.log("Fethched product details: ", product);
         this.productName = product.name;
         this.productPrice = product.price;
         this.productQuantity = product.quantity;

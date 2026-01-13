@@ -1,10 +1,10 @@
 <template>
   <div class="container">
     <h1 class="mb-4 fw-bold">Product List</h1>
-    <div class="ProductList">
-      <table>
+    <div class="ProductList mb-2">
+      <table class="table table-bordered rounded-2">
         <thead>
-          <tr>
+          <tr class="border border-bottom">
             <td>Sl No.</td>
             <td>Name</td>
             <td>Price</td>
@@ -19,9 +19,9 @@
             <td>{{ product.price }}</td>
             <td>{{ product.quantity }}</td>
             <td>
-              <div class="d-flex justify-content-center align-items-center">
-                <button class="btn btn-secondary" @click="editProduct(product.id)">Edit</button>
-                <button class="btn btn-danger" @click="deleteProduct(product.id)">Delete</button>
+              <div class="d-flex justify-content-center align-items-center m-1">
+                <button class="btn btn-secondary p-1 me-2" @click="editProduct(product.id)">Edit</button>
+                <button class="btn btn-danger p-1" @click="deleteProduct(product.id)">Delete</button>
               </div>
             </td>
           </tr>
@@ -29,7 +29,7 @@
       </table>
     </div>
     <div class="d-flex justify-content-end align-items-center">
-      <button class="btn btn-primary fw-bold" @click="$router.push({ name: 'ProductDetails', id: null })">Add Product</button>
+      <button class="btn btn-primary fw-bold" @click="$router.push({ name: 'ProductDetails', params: {id: null} })">Add Product</button>
     </div>
   </div>
 </template>
@@ -67,7 +67,8 @@ export default {
     },
     async deleteProduct(productId) {
       try{
-        const response = axios.delete(`http://localhost:8000/api/products/${productId}/`);
+        const response = await axios.delete(`http://localhost:8000/api/products/${productId}/`);
+        console.log("Delete response: ", response);
         if(response.status === 204) {
           this.fetchProducts();
           console.log("Product deleted successfully.");
