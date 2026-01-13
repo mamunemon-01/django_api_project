@@ -14,6 +14,7 @@
           <textarea id="postContent" class="w-100 ms-auto rounded-1" v-model="currentDescription"></textarea>
         </div>
         <div class="form-field d-flex justify-content-end mb-2 me-2">
+          <button class="btn btn-light border border-3 fw-bold me-2" @click="hidePostEditForm">Cancel</button>
           <button class="btn btn-primary fw-bold" @click="updatePost">Update</button>
         </div>
     </div>
@@ -115,6 +116,10 @@ export default {
       } catch (error) {
         console.error('Error updating post:', error);
       }
+    },
+    hidePostEditForm() {
+      const postEditForm = document.getElementById("postEditForm");
+      postEditForm.classList.add("d-none");
     }
   }
 }
