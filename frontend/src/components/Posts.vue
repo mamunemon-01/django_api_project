@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <div id="postEditForm" class=" form-group d-none">
+    <div v-if="isPostEditFormVisible" id="postEditForm" class=" form-group">
         <div class="form-field ms-2">
           <label for="postTitle" class="d-flex text-start">Title:</label>
         </div>
@@ -14,7 +14,7 @@
           <textarea id="postContent" class="w-100 ms-auto rounded-1" v-model="currentDescription"></textarea>
         </div>
         <div class="form-field d-flex justify-content-end mb-2 me-2">
-          <button class="btn btn-light border border-3 fw-bold me-2" @click="hidePostEditForm">Cancel</button>
+          <button class="btn btn-light border border-3 fw-bold me-2" @click="isPostEditFormVisible = false">Cancel</button>
           <button class="btn btn-primary fw-bold" @click="updatePost">Update</button>
         </div>
     </div>
@@ -52,7 +52,8 @@ export default {
       posts: [],
       currentId: null,
       currentTitle: null,
-      currentDescription: null
+      currentDescription: null,
+      isPostEditFormVisible: false
     }
   },
   mounted() {
@@ -88,13 +89,8 @@ export default {
     },
     editPost(post) {
       this.currentId = post.id;
-      const postEditForm = document.getElementById("postEditForm");
-      postEditForm.classList.remove("d-none");
-      const postTitle = postEditForm.querySelector("#postTitle");
-      postTitle.value = post.title;
+      this.isPostEditFormVisible = true;
       this.currentTitle = post.title;
-      const postContent = postEditForm.querySelector("#postContent");
-      postContent.value = post.description;
       this.currentDescription = post.description;
       this.toggleOptionsDropdown(post.id);
     },
@@ -108,18 +104,13 @@ export default {
         if(response.status === 200) {
           console.log('Post updated:', response);
           // Hide the edit form
-          const postEditForm = document.getElementById("postEditForm");
-          postEditForm.classList.add("d-none");
+          this.isPostEditFormVisible = false;
           // Refresh the posts list after update
           this.fetchPosts();
         }
       } catch (error) {
         console.error('Error updating post:', error);
       }
-    },
-    hidePostEditForm() {
-      const postEditForm = document.getElementById("postEditForm");
-      postEditForm.classList.add("d-none");
     }
   }
 }
