@@ -1,6 +1,8 @@
 <template>
   <div class="container">
-    <div v-if="isPostEditFormVisible" id="postEditForm" class=" form-group">
+    <div v-if="isPostEditFormVisible" class="modal-backdrop d-flex justify-content-center align-items-center" @click="isPostEditFormVisible = false">
+      <div id="postEditForm" class="modal-content form-group w-50 border border-2 rounded-2 bg-light" @click.stop>
+        <h3 class="mb-3 mt-2 fw-bold">Edit Post</h3>
         <div class="form-field ms-2">
           <label for="postTitle" class="d-flex text-start">Title:</label>
         </div>
@@ -17,6 +19,7 @@
           <button class="btn btn-light border border-3 fw-bold me-2" @click="isPostEditFormVisible = false">Cancel</button>
           <button class="btn btn-primary fw-bold" @click="updatePost">Update</button>
         </div>
+      </div>
     </div>
     <h3 class="mb-3 fw-bold">News Feed</h3>
     <div class="PostsContainer">
@@ -123,4 +126,12 @@ export default {
     /* color: ; */
     /* border-radius: 4px;
   } */
+  .modal-backdrop {
+    opacity: 0.8;
+    z-index: 1000;
+  }
+  .modal-content {
+    /* background: white; */
+    z-index: 1000;
+  }
 </style>
