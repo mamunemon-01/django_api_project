@@ -1,7 +1,7 @@
 <template>
-  <div class="container">
+  <div class="container" @click="activePostIdForMenu = null">
     <div v-if="isPostEditFormVisible" class="modal-backdrop d-flex justify-content-center align-items-center" @click="isPostEditFormVisible = false">
-      <div id="postEditForm" class="modal-content form-group w-50 border border-2 rounded-2 bg-light" @click.stop>
+      <div id="postEditForm" class="modal-content form-group w-50 border border-2 rounded-2 bg-light shadow" @click.stop>
         <h3 class="mb-3 mt-2 fw-bold">Edit Post</h3>
         <div class="form-field ms-2">
           <label for="postTitle" class="d-flex text-start">Title:</label>
@@ -29,10 +29,11 @@
             <h5 class="card-title text-start text-primary p-2">{{ post.title }}</h5>
             <i class="text-muted ms-auto">@{{ post.owner.username }}</i>
             <!-- Three dot icon with build in library/module -->
-            <i v-if="checkIfOwnPost(post)" class="bi bi-three-dots-vertical" @click="toggleOptionsDropdown(post.id)"></i>
-            <ul v-if="checkIfOwnPost(post)" :id="`postActions${post.id}`" @blur="toggleOptionsDropdown(post.id)" class="d-none form-select form-select-sm w-auto ms-2" >
-              <li class="dropdown-item" value="edit" @click="editPost(post)">Edit</li>
-              <li class="dropdown-item" value="delete" @click="deletePost(post)">Delete</li>
+            <i v-if="checkIfOwnPost(post)" class="bi bi-three-dots-vertical" @click.stop="activePostIdForMenu = post.id"></i>
+            <ul v-if="activePostIdForMenu === post.id" :id="`postActions${post.id}`" @blur="toggleOptionsDropdown(post.id)" 
+              class="Post-Actions dropdown-menu show shadow position-absolute end-0 w-auto ms-2" >
+              <li role="button" class="dropdown-item" value="edit" @click="editPost(post)"><i class="bi bi-pencil"></i> Edit</li>
+              <li role="button" class="dropdown-item text-danger" value="delete" @click="deletePost(post)"><i class="bi bi-trash3"></i> Delete</li>
             </ul>
           </div>
           <p class="card-text text-start p-3">{{ post.description }}</p>
@@ -56,7 +57,8 @@ export default {
       currentId: null,
       currentTitle: null,
       currentDescription: null,
-      isPostEditFormVisible: false
+      isPostEditFormVisible: false,
+      activePostIdForMenu: null
     }
   },
   mounted() {
