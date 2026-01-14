@@ -13,8 +13,8 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="product in this.products" :key="product.id">
-            <td>{{ product.id }}</td>
+          <tr v-for="(product, index) in this.products" :key="product.id">
+            <td>{{ index + 1 }}</td>
             <td>{{ product.name }}</td>
             <td>{{ product.price }}</td>
             <td>{{ product.quantity }}</td>
