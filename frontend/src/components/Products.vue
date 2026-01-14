@@ -28,7 +28,7 @@
         </tbody>
       </table>
     </div>
-    <div class="d-flex justify-content-between align-items-center mb-3">
+    <div class="d-flex justify-content-between align-items-center mb-1">
       <button class="btn btn-primary fw-bold" @click="fetchPreviousProducts"><i class="bi bi-arrow-left"></i></button>
       <select class="form-select mx-2 w-auto" v-model="limit">
         <option>5</option>
@@ -39,7 +39,7 @@
       </select>
       <button class="btn btn-primary fw-bold" @click="fetchNextProducts"><i class="bi bi-arrow-right"></i></button>
     </div>
-    <div class="d-flex justify-content-end align-items-center">
+    <div class="d-flex justify-content-end align-items-center mt-1 mb-5">
       <button class="btn btn-primary fw-bold" @click="$router.push({ name: 'ProductDetails', params: {id: null} })">Add Product</button>
     </div>
   </div>
