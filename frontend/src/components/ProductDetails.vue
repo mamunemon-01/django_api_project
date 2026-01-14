@@ -3,12 +3,18 @@
     <h1 v-if="id" class="mb-4 fw-bold">Edit Product</h1>
     <h1 v-else class="mb-4 fw-bold">Add Product</h1>
     <div class="ProductDetails">
-      <label for="productName" class="d-flex text-start">Name:</label>
-      <input id="productName" v-model="productName"/>
-      <label for="productPrice" class="d-flex text-start mt-3">Price:</label>
-      <input id="productPrice" type="number" step="0.01" v-model="productPrice"/>
-      <label for="productQuantity" class="d-flex text-start mt-3">Quantity:</label>
-      <input id="productQuantity" type="number" v-model="productQuantity"/>
+      <div class="ProductNameContainer d-flex justify-content-between align-items-center my-1">
+        <label for="productName" class="d-flex text-start">Name:</label>
+        <input id="productName" v-model="productName"/>
+      </div>
+      <div class="ProductPriceContainer d-flex justify-content-between align-items-center my-1">
+        <label for="productPrice" class="d-flex text-start mt-3">Price:</label>
+        <input id="productPrice" type="number" step="0.01" v-model="productPrice"/>
+      </div>
+      <div class="ProductQuantityContainer d-flex justify-content-between align-items-center my-1">
+        <label for="productQuantity" class="d-flex text-start mt-3">Quantity:</label>
+        <input id="productQuantity" type="number" v-model="productQuantity"/>
+      </div>
     </div>
     <div class="d-flex justify-content-end align-items-center mt-4">
       <button class="btn btn-secondary fw-bold me-2" @click="$router.push({ name: 'Products' })">Cancel</button>
