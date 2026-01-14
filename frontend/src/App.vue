@@ -1,13 +1,13 @@
 <template>
   <div id="app" class="d-flex flex-column min-vh-100">
     <!-- <img alt="Vue logo" src="./assets/logo.png"> -->
-    <div id="app-header" class="d-flex bg-primary shadow position-sticky top-0 justify-content-center align-items-center">
+    <header id="app-header" class="d-flex bg-primary shadow position-sticky top-0 justify-content-center align-items-center">
       <h1 id="app-title" class="ps-2 py-1 text-light fw-bold">HeadBook</h1>
       <h3 v-if="isLoggedIn" id="user-name" class="ms-4 text-light fw-bold border rounded-5 p-1">@{{ username }}</h3>
       <div v-if="isLoggedIn" class="ms-auto pe-2 py-1">
         <button class="btn btn-light fw-bold" @click="handleLogout">Log Out</button>
       </div>
-    </div>
+    </header>
     <div id="app-content" class="d-flex flex-grow-1 align-items-start">
       <NavBar v-if="isLoggedIn" class="flex-shrink-0" :username="username" @logout="handleLogout"/>
       <!-- <NewsFeed v-if="isLoggedIn" titlePlaceholder="What's on your head?" descriptionPlaceholder="Share your thoughts..."/> -->
@@ -41,6 +41,12 @@ export default {
     // For simplicity, we'll assume the user is not logged in initially
     this.isLoggedIn = false;
     this.handlePreviousLogin();
+    // Get and set the header height in CSS
+    const header = document.getElementById('app-header')
+    document.documentElement.style.setProperty(
+      "--header-height", `${header.offsetHeight}px`
+    );
+    console.log(`${header.offsetHeight}`);
   },
   methods: {
     async handlePreviousLogin() {

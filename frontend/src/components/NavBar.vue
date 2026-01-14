@@ -1,5 +1,5 @@
 <template>
-    <nav class="d-flex flex-column shadow position-sticky top-0 bg-info text-light min-vh-100 w-auto">
+    <nav class="d-flex flex-column shadow position-sticky bg-info text-light w-auto">
         <div class="container-fluid mt-3">
             <!-- <router-link to="/posts" class="navbar-brand"><h1 class="fw-bold">HeadBook</h1></router-link> -->
             <!-- <div class="navbar-nav"> -->
@@ -25,7 +25,8 @@ export default {
 </script>
 
 <style scoped>
-    /* nav {
-        width: 150px;
-    } */
+    nav {
+        top: var(--header-height);
+        height: calc(100vh - var(--header-height));
+    }
 </style>
