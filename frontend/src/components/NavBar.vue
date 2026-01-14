@@ -4,6 +4,7 @@
             <!-- <router-link to="/posts" class="navbar-brand"><h1 class="fw-bold">HeadBook</h1></router-link> -->
             <!-- <div class="navbar-nav"> -->
                 <router-link to="/posts" class="nav-link text-light fw-bold">Posts</router-link>
+                <hr/>
                 <router-link to="/products" class="nav-link text-light fw-bold">Products</router-link>
                 <!-- <h3 id="user-name" class="mx-4 text-light fw-bold border rounded-pill p-1">@{{ username }}</h3>
                 <div class="ms-auto pe-2 py-1">
@@ -24,7 +25,7 @@ export default {
 </script>
 
 <style scoped>
-    nav {
+    /* nav {
         width: 150px;
-    }
+    } */
 </style>

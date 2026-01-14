@@ -1,7 +1,7 @@
 <template>
   <div id="app" class="d-flex flex-column min-vh-100">
     <!-- <img alt="Vue logo" src="./assets/logo.png"> -->
-    <div class="d-flex bg-primary justify-content-center align-items-center">
+    <div id="app-header" class="d-flex bg-primary shadow position-sticky top-0 justify-content-center align-items-center">
       <h1 id="app-title" class="ps-2 py-1 text-light fw-bold">HeadBook</h1>
       <h3 v-if="isLoggedIn" id="user-name" class="ms-4 text-light fw-bold border rounded-5 p-1">@{{ username }}</h3>
       <div v-if="isLoggedIn" class="ms-auto pe-2 py-1">
@@ -108,7 +108,7 @@ html, body {
   background-color: #f5f7fa;
   margin-top: 0px;
 }
-/* #app-content {
-  margin-top: 60px;
-} */
+#app-header {
+  z-index:1050;
+}
 </style>
