@@ -1,18 +1,18 @@
 <template>
-  <div id="app">
+  <div id="app" class="d-flex flex-column min-vh-100">
     <!-- <img alt="Vue logo" src="./assets/logo.png"> -->
-    <!-- <div class="d-flex bg-primary justify-content-center align-items-center">
-      <h1 id="app-title" class="ps-2 py-1 text-light">HeadBook</h1>
+    <div class="d-flex bg-primary justify-content-center align-items-center">
+      <h1 id="app-title" class="ps-2 py-1 text-light fw-bold">HeadBook</h1>
       <h3 v-if="isLoggedIn" id="user-name" class="ms-4 text-light fw-bold border rounded-5 p-1">@{{ username }}</h3>
       <div v-if="isLoggedIn" class="ms-auto pe-2 py-1">
         <button class="btn btn-light fw-bold" @click="handleLogout">Log Out</button>
       </div>
-    </div> -->
-    <NavBar v-if="isLoggedIn" :username="username" @logout="handleLogout"/>
-    <div id="app-content">
+    </div>
+    <div id="app-content" class="d-flex flex-grow-1 align-items-start">
+      <NavBar v-if="isLoggedIn" class="flex-shrink-0" :username="username" @logout="handleLogout"/>
       <!-- <NewsFeed v-if="isLoggedIn" titlePlaceholder="What's on your head?" descriptionPlaceholder="Share your thoughts..."/> -->
-      <router-view v-if="isLoggedIn" />
-      <LogIn v-else @login-success="handleLoginSuccess"/>
+      <router-view v-if="isLoggedIn" class="mt-5"/>
+      <LogIn v-else class="mt-5 pt-5" @login-success="handleLoginSuccess"/>
     </div>
   </div>
 </template>
@@ -94,6 +94,9 @@ export default {
 </script>
 
 <style>
+html, body {
+  height: 100%;
+}
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -105,10 +108,7 @@ export default {
   background-color: #f5f7fa;
   margin-top: 0px;
 }
-#app-title {
-  font-weight: bold;
-}
-#app-content {
+/* #app-content {
   margin-top: 60px;
-}
+} */
 </style>
