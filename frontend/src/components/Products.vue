@@ -1,9 +1,13 @@
 <template>
+  <!-- Product list container -->
   <div class="container d-flex flex-column">
+    <!-- Product list Header -->
     <h1 class="mb-4 fw-bold">Product List</h1>
-    <div class="ProductList mb-2">
+    <!-- Product table container -->
+    <div class="ProductList d-flex justify-content-center align-items-center mb-2">
       <table class="table table-bordered rounded-2">
         <thead>
+          <!-- Table header -->
           <tr class="border border-bottom">
             <td>Sl No.</td>
             <td>Name</td>
@@ -13,6 +17,7 @@
           </tr>
         </thead>
         <tbody>
+          <!-- table body -->
           <tr v-for="(product, index) in this.products" :key="product.id">
             <td>{{ offset + index + 1 }}</td>
             <td>{{ product.name }}</td>
@@ -119,7 +124,4 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-  .container {
-    max-width: 420px;
-  }
 </style>
