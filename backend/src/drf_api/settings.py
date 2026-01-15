@@ -136,4 +136,5 @@ REST_FRAMEWORK = {
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:8080',
     # 'http://192.168.1.21:8080'
+    'http://0.0.0.0:8080'
 ]
