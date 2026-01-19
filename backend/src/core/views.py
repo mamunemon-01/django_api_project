@@ -11,6 +11,9 @@ from .serializers import PostSerializer, ProductSerializer
 from .models import Post, Product
 
 # Create your views here.
+
+# Post views
+
 # class PostView(
 #     mixins.ListModelMixin,
 #     mixins.CreateModelMixin,
@@ -89,6 +92,8 @@ class PostRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
 #     }
 
 #     return JsonResponse(data)
+
+# Product views
 
 class ProductListCreateView(generics.ListCreateAPIView):
     serializer_class = ProductSerializer

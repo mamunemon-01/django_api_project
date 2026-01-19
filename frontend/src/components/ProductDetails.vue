@@ -5,15 +5,15 @@
     <div class="ProductDetails">
       <div class="ProductNameContainer d-flex justify-content-between align-items-center my-1">
         <label for="productName" class="d-flex text-start">Name:</label>
-        <input id="productName" v-model="productName"/>
+        <input id="productName" class="border-1 rounded-1" v-model="productName"/>
       </div>
       <div class="ProductPriceContainer d-flex justify-content-between align-items-center my-1">
         <label for="productPrice" class="d-flex text-start mt-3">Price:</label>
-        <input id="productPrice" type="number" step="0.01" v-model="productPrice"/>
+        <input id="productPrice" class="border-1 rounded-1" type="number" step="0.01" v-model="productPrice"/>
       </div>
       <div class="ProductQuantityContainer d-flex justify-content-between align-items-center my-1">
         <label for="productQuantity" class="d-flex text-start mt-3">Quantity:</label>
-        <input id="productQuantity" type="number" v-model="productQuantity"/>
+        <input id="productQuantity" class="border-1 rounded-1" type="number" v-model="productQuantity"/>
       </div>
     </div>
     <div class="d-flex justify-content-end align-items-center mt-4">
